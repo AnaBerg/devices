@@ -16,6 +16,8 @@ import {
 export const create = async (request: Request, response: Response) => {
   const device = request.body as Omit<Device, "id">;
 
+  console.log(device);
+
   const newDevice = await createDevice(device);
 
   if (instanceOfDevice(newDevice)) {
