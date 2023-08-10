@@ -3,13 +3,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Form, TextField, Button } from "../../../components";
 
 type Inputs = {
-  name: string;
+  macAddress: string;
 };
 
-interface NameFormProps {}
+interface MacAddressFormProps {}
 
-const NameForm: React.FC<NameFormProps> = () => {
-  const defaultValues = { name: "" };
+const MacAddressForm: React.FC<MacAddressFormProps> = () => {
+  const defaultValues = { macAddress: "" };
   const methods = useForm<Inputs>({ defaultValues });
   const {
     formState: { errors },
@@ -30,7 +30,13 @@ const NameForm: React.FC<NameFormProps> = () => {
 
   return (
     <Form methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <TextField name="name" label="Nome" error={!!errors.name} required />
+      <TextField
+        name="macAddress"
+        label="MAC Address"
+        mask="**:**:**:**:**:**"
+        error={!!errors.macAddress}
+        required
+      />
       <div
         style={{
           display: "flex",
@@ -48,4 +54,4 @@ const NameForm: React.FC<NameFormProps> = () => {
   );
 };
 
-export default NameForm;
+export default MacAddressForm;

@@ -1,5 +1,5 @@
 import { Accordian, List } from "../../components";
-import { CreateForm, NameForm } from "../components";
+import { CreateForm, MacAddressForm } from "../components";
 
 interface LandingPageProps {}
 
@@ -13,7 +13,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
       </Accordian>
       <Accordian title="Consultar">
         <div>
-          <NameForm />
+          <MacAddressForm />
         </div>
       </Accordian>
       <Accordian title="Listar">
@@ -29,7 +29,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
       </Accordian>
       <Accordian title="Excluir">
         <div>
-          <NameForm />
+          <MacAddressForm />
         </div>
       </Accordian>
     </>
