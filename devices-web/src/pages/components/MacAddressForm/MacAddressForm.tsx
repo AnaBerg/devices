@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Form, TextField, Button } from "../../../components";
@@ -6,9 +8,21 @@ type Inputs = {
   macAddress: string;
 };
 
-interface MacAddressFormProps {}
+interface MacAddressFormProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mutate?: (body: any) => Promise<void>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  query?: (params: any) => void;
+  loading?: boolean;
+  success?: boolean;
+}
 
-const MacAddressForm: React.FC<MacAddressFormProps> = () => {
+const MacAddressForm: React.FC<MacAddressFormProps> = ({
+  mutate,
+  query,
+  loading = false,
+  success = false,
+}) => {
   const defaultValues = { macAddress: "" };
   const methods = useForm<Inputs>({ defaultValues });
   const {
@@ -17,9 +31,20 @@ const MacAddressForm: React.FC<MacAddressFormProps> = () => {
     reset,
   } = methods;
 
+  useEffect(() => {
+    if (success) {
+      reset(defaultValues);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [success]);
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     if (data) {
-      console.log(data);
+      if (mutate) {
+        mutate(data);
+      } else if (query) {
+        query(data);
+      }
     }
   };
 
@@ -48,7 +73,9 @@ const MacAddressForm: React.FC<MacAddressFormProps> = () => {
           Limpar
         </Button>
         <div style={{ width: "10px" }} />
-        <Button type="submit">Enviar</Button>
+        <Button loading={loading} type="submit">
+          Enviar
+        </Button>
       </div>
     </Form>
   );

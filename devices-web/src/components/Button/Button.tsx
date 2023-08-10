@@ -1,8 +1,12 @@
+import { CircularProgress } from "@mui/material";
+
 interface ButtonProps {
   children: React.ReactNode;
   variant?: "contained" | "outline" | "text";
   type?: "button" | "submit" | "reset";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  loading?: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -10,6 +14,8 @@ const Button: React.FC<ButtonProps> = ({
   variant = "contained",
   onClick,
   type,
+  loading = false,
+  disabled = false,
 }) => {
   const style = () => {
     switch (variant) {
@@ -55,8 +61,13 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button type={type} style={style()} onClick={onClick}>
-      {children}
+    <button
+      disabled={disabled || loading}
+      type={type}
+      style={style()}
+      onClick={onClick}
+    >
+      {loading ? <CircularProgress size={20} /> : children}
     </button>
   );
 };

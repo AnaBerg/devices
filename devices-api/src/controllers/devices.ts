@@ -33,7 +33,7 @@ export const findByMacAddress = async (
   request: Request,
   response: Response
 ) => {
-  const { macAddress } = request.body as { macAddress: string };
+  const { macAddress } = request.query as { macAddress: string };
 
   const device = await findDeviceByMacAddress(macAddress);
 
@@ -51,7 +51,9 @@ export const findByMacAddress = async (
 export const list = async (_: Request, response: Response) => {
   const devices = await listDevices();
 
-  if (instanceOfDevice((devices as Array<any>)?.[0])) {
+  if ((devices as Array<any>)?.length === 0) {
+    response.status(200).json(devices);
+  } else if (instanceOfDevice((devices as Array<any>)?.[0])) {
     response.status(200).json(devices);
   } else if (instanceOfResponseError(devices)) {
     response.status(devices.status).json({ message: devices.message });

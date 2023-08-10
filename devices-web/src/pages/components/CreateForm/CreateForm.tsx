@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
+
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { Form, Select, TextField, Button } from "../../../components";
+import { Form, Select, TextField, Button, Toast } from "../../../components";
+import useMutation from "../../../hooks/useMutation";
+
 import { DeviceType } from "../../../types/device";
 
 type Inputs = {
@@ -14,12 +18,45 @@ interface CreateFormProps {}
 
 const CreateForm: React.FC<CreateFormProps> = () => {
   const defaultValues = { macAddress: "", name: "", serial: "", type: "" };
+  const [open, setOpen] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const [type, setType] = useState<"error" | "success">("success");
+  const { loading, error, success, mutate } = useMutation("POST", "/v1/device");
   const methods = useForm<Inputs>({ defaultValues });
   const {
     formState: { errors },
     handleSubmit,
     reset,
   } = methods;
+
+  useEffect(() => {
+    if (success) {
+      setMessage("Dispositivo criado com sucesso");
+      setType("success");
+      reset(defaultValues);
+      setOpen(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [success]);
+
+  useEffect(() => {
+    if (error) {
+      setMessage("Um erro ocorreu ao criar dispositivo");
+      setType("error");
+      setOpen(true);
+    }
+  }, [error]);
+
+  const handleToastClose = (
+    _?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const types = [
     { label: "Câmera", value: "CAMERA" },
@@ -29,7 +66,7 @@ const CreateForm: React.FC<CreateFormProps> = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     if (data) {
-      console.log(data);
+      mutate(data);
     }
   };
 
@@ -68,12 +105,18 @@ const CreateForm: React.FC<CreateFormProps> = () => {
           padding: "10px 0",
         }}
       >
-        <Button onClick={(e) => onReset(e)} variant="text">
+        <Button loading={loading} onClick={(e) => onReset(e)} variant="text">
           Limpar
         </Button>
         <div style={{ width: "10px" }} />
         <Button type="submit">Enviar</Button>
       </div>
+      <Toast
+        open={open}
+        onClose={handleToastClose}
+        type={type}
+        message={message}
+      />
     </Form>
   );
 };
