@@ -34,6 +34,7 @@ const TextField = ({
     <View style={style.container}>
       <Text style={labelStyle}>{label}</Text>
       <TextInput
+        testID={name}
         style={inputStyle}
         value={v}
         onChangeText={(value: string) => {

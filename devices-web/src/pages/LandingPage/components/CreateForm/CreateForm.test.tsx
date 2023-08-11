@@ -40,7 +40,6 @@ describe("The CreateForm", () => {
     fireEvent.change(typeInput, { target: { value: device.type } });
 
     const sendButton = screen.getByText("Enviar");
-
     fireEvent.click(sendButton);
 
     const toast = await screen.findByText("Dispositivo criado com sucesso");

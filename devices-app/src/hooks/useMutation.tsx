@@ -14,7 +14,6 @@ const useMutation = (method: Methods, route: string) => {
   const [data, setData] = useState<any>(null);
 
   const mutate = async (body: any) => {
-    console.log(`${baseUrl}${route}`);
     const res = await fetch(`${baseUrl}${route}`, {
       method,
       headers: {
@@ -33,10 +32,10 @@ const useMutation = (method: Methods, route: string) => {
         const { message } = e as Error;
         const requestError = {
           message,
-          status: 200,
+          status: 400,
         } as RequestError;
         setError(requestError);
-      })
+      });
 
     setData(res);
   };

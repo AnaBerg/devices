@@ -13,7 +13,7 @@ const List = ({ items }: ListProps) => {
   if (items.length === 0) {
     return (
       <View style={styles.container}>
-        <Text>Não há dispositivos para listar</Text>
+        <Text>Não há dispositivos</Text>
       </View>
     );
   }

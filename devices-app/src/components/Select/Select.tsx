@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { View, Text, StyleSheet } from "react-native";
 import { UseFormRegister, UseFormSetValue } from "react-hook-form";
@@ -31,7 +31,7 @@ const Select = ({
   useEffect(() => {
     register(name, { required });
   }, [register]);
-
+  const [v, setV] = useState<string>("");
   const labelStyle = error ? style.labelError : style.label;
   const selectStyle = error ? style.selectError : style.select;
 
@@ -39,6 +39,7 @@ const Select = ({
     <View style={style.container}>
       <Text style={labelStyle}>{label}</Text>
       <Picker
+        textInputProps={{ testID: name }}
         style={{
           inputAndroid: selectStyle,
           inputIOS: selectStyle,
@@ -46,8 +47,12 @@ const Select = ({
         }}
         useNativeAndroidPickerStyle={false}
         placeholder={{ label: "Selecione um item", value: "" }}
+        value={v}
         items={items}
-        onValueChange={(value: any) => setValue(name, value)}
+        onValueChange={(value: string) => {
+          setV(value);
+          setValue(name, value);
+        }}
       />
     </View>
   );

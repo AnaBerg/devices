@@ -12,7 +12,11 @@ const Accordian = ({ children, title }: AccordianProps) => {
 
   return (
     <View style={style.container}>
-      <TouchableOpacity style={style.header} onPress={() => setOpen((p) => !p)}>
+      <TouchableOpacity
+        testID="accordian-header"
+        style={style.header}
+        onPress={() => setOpen((p) => !p)}
+      >
         <Text style={style.title}>{title}</Text>
         <Icon name={open ? "chevron-up" : "chevron-down"} size={20} />
       </TouchableOpacity>
