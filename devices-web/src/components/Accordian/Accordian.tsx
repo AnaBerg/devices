@@ -24,6 +24,7 @@ const Accordian: React.FC<AccordianProps> = ({ children, title }) => {
         }}
       >
         <div
+          data-testid="accordian-header"
           onClick={() => setOpen((p) => !p)}
           style={{
             paddingTop: "10px",

@@ -14,7 +14,7 @@ interface ListProps {
 
 const List: React.FC<ListProps> = ({ items, loading = false }) => {
   if (loading) {
-    return <CircularProgress size={20} />;
+    return <CircularProgress data-testid="loading-spinner" size={20} />;
   }
 
   if (items.length === 0) {

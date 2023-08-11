@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
 
-interface SelectProps {
+export interface SelectProps {
   name: string;
   label: string;
   items: Array<{
@@ -36,6 +36,7 @@ const Select: React.FC<SelectProps> = ({
           }}
         >
           <label
+            htmlFor={name}
             style={{ fontFamily: "futura-pt, sans-serif", fontWeight: 700 }}
           >
             {label}
@@ -43,6 +44,7 @@ const Select: React.FC<SelectProps> = ({
           <select
             {...field}
             disabled={disabled}
+            id={name}
             style={{
               fontFamily: "futura-pt, sans-serif",
               fontWeight: 400,

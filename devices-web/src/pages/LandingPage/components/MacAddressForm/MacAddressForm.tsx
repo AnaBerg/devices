@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { Form, TextField, Button } from "../../../components";
+import { Form, TextField, Button } from "../../../../components";
 
 type Inputs = {
   macAddress: string;
@@ -35,7 +35,7 @@ const MacAddressForm: React.FC<MacAddressFormProps> = ({
     if (success) {
       reset(defaultValues);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {

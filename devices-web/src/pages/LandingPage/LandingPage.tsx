@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Accordian, List, Toast } from "../../components";
 import { handleDeviceList } from "../../helper/handleDeviceList";
 import useQuery from "../../hooks/useQuery";
-import { CreateForm, MacAddressForm } from "../components";
+import { CreateForm, MacAddressForm } from "./components";
 import useMutation from "../../hooks/useMutation";
 
 interface LandingPageProps {}

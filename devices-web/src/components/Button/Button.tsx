@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   loading = false,
   disabled = false,
 }) => {
-  const style = () => {
+  const style = (): React.CSSProperties => {
     switch (variant) {
       case "text":
         return {
@@ -67,7 +67,11 @@ const Button: React.FC<ButtonProps> = ({
       style={style()}
       onClick={onClick}
     >
-      {loading ? <CircularProgress size={20} /> : children}
+      {loading ? (
+        <CircularProgress data-testid="loading-spinner" size={20} />
+      ) : (
+        children
+      )}
     </button>
   );
 };

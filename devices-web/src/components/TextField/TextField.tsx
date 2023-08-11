@@ -34,11 +34,13 @@ const TextField: React.FC<TextFieldProps> = ({
           }}
         >
           <label
+            htmlFor={name}
             style={{ fontFamily: "futura-pt, sans-serif", fontWeight: 700 }}
           >
             {label}
           </label>
           <InputMask
+            id={name}
             style={{
               fontFamily: "futura-pt, sans-serif",
               fontWeight: 400,

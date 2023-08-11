@@ -7,7 +7,6 @@ type RequestError = {
 
 const baseUrl = "http://localhost:8080";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useQuery = (route: string) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -33,7 +32,7 @@ const useQuery = (route: string) => {
         const { message } = e as Error;
         const requestError = {
           message,
-          status: 200,
+          status: 400,
         } as RequestError;
         setError(requestError);
         setSuccess(false);

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { Form, Select, TextField, Button, Toast } from "../../../components";
-import useMutation from "../../../hooks/useMutation";
+import { Form, Select, TextField, Button, Toast } from "../../../../components";
+import useMutation from "../../../../hooks/useMutation";
 
-import { DeviceType } from "../../../types/device";
+import { DeviceType } from "../../../../types/device";
 
 type Inputs = {
   name: string;
