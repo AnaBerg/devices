@@ -1,6 +1,6 @@
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 
-import { Accordian, Button, List } from "../../components";
+import { Accordian, List } from "../../components";
 import { CreateForm, MacAddressForm } from "./components";
 import useQuery from "../../hooks/useQuery";
 import { handleDeviceList } from "../../helpers/handleDeviceList";
@@ -16,12 +16,16 @@ const LandingPage = () => {
   } = useQuery("/v1/device");
   const { error: deleteError, mutate } = useMutation("DELETE", "/v1/device");
 
+  useEffect(() => {
+    listQuery();
+  }, []);
+
   const devices = handleDeviceList(listData);
   const device = handleDeviceList(deviceData ? [deviceData] : []);
 
   return (
     <View style={styles.container}>
-      <ScrollView contentInsetAdjistmenBehavior="automatic">
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Accordian title="Cadastrar">
           <CreateForm />
         </Accordian>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getBaseUrl } from "../helpers/getBaseUrl";
 
 type RequestError = {
   status: number;
@@ -7,7 +8,7 @@ type RequestError = {
 
 type Methods = "POST" | "DELETE";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = getBaseUrl("");
 
 const useMutation = (method: Methods, route: string) => {
   const [error, setError] = useState<RequestError | null>(null);

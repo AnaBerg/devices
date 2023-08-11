@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { getBaseUrl } from "../helpers/getBaseUrl";
 
 type RequestError = {
   status: number;
   message: string;
 };
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = getBaseUrl("");
 
 const useQuery = (route: string) => {
   const [error, setError] = useState<RequestError | null>(null);
