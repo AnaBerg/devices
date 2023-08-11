@@ -1,27 +1,15 @@
-# React + TypeScript + Vite
+# Devices Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esse é a parte web da prova. É recomendado que rode a `devices-api` antes de iniciar essa aplicação (leia o README de `devices-api` para mais informações).
 
-Currently, two official plugins are available:
+## Iniciar a aplicação
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Faça a instalação dos pacotes com o gerenciador de pacotes `Yarn`, é possivel usar outros gerenciadores como `npm` ou `pnpm`, mas é recomendado deletar a `yarn.lock` antes. (os comandos serão mostrados com o yarn, caso tenha trocado gerenciador, é só rodar os mesmos comandos com o seu escolhido)
 
-## Expanding the ESLint configuration
+Após a instalação, basta rodar o comando `yarn dev` e acessar [esse link](http://localhost:5173).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Testes
 
-- Configure the top-level `parserOptions` property like this:
+Para rodar os testes, basta rodar o comando `yarn test`.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Caso queira ver mais informações sobre a cobertura de testes, rode o comando `yarn coverage` e abra o html que está em `coverage/Icov-report/index.html`.
